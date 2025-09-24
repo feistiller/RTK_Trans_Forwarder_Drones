@@ -1,0 +1,18 @@
+{
+  "ntrip": {
+    "host": "103.40.12.16",
+    "port": 8002,
+    "mountpoint": "RTCM33_GRCEJ",
+    "username": "ccqq11581",
+    "password": "54223"
+  },
+  "position": {
+    "lat": 31.1434771,
+    "lon": 121.4131407,
+    "alt": 10.0
+  },
+  "serial": {
+    "port": "COM37",
+    "baudrate": 115200
+  }
+}
