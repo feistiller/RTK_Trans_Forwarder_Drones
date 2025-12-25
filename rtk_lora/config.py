@@ -9,6 +9,11 @@ from typing import Any, Dict
 
 DEFAULT_PATH = "config.json"
 DEFAULT_CONFIG = {
+    "mode": "normal",  # normal: 始终转发网络RTK; backup: 基站优先，超时回退网络RTK
+    "base_station": {
+        "timeout_seconds": 10.0,
+        "use_1005_position": True
+    },
     "ntrip": {
         "host": "",
         "port": 2101,

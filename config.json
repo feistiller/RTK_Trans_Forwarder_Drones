@@ -1,18 +1,23 @@
 {
   "ntrip": {
-    "host": "103.40.12.16",
+    "host": "203.107.45.154",
     "port": 8002,
-    "mountpoint": "RTCM33_GRCEJ",
-    "username": "ccqq11581",
-    "password": "54223"
+    "mountpoint": "AUTO",
+    "username": "qxtmcr00112233",
+    "password": "30d5d81"
   },
   "position": {
-    "lat": 31.1434771,
-    "lon": 121.4131407,
-    "alt": 10.0
+    "lat": 31.1435544,
+    "lon": 121.4131256,
+    "alt": 24.0
   },
   "serial": {
     "port": "COM37",
     "baudrate": 115200
+  },
+  "mode": "backup",
+  "base_station": {
+    "timeout_seconds": 10.0,
+    "use_1005_position": true
   }
 }

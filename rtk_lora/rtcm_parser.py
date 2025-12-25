@@ -26,8 +26,16 @@ class RTCMParser:
 
     def feed(self, data: bytes) -> List[int]:
         """喂入数据，返回本次解析出的消息号列表。"""
-        self.buf.extend(data)
         found: List[int] = []
+        for msg_num, _payload in self.feed_messages(data):
+            self.stats[msg_num] = self.stats.get(msg_num, 0) + 1
+            found.append(msg_num)
+        return found
+
+    def feed_messages(self, data: bytes) -> List[Tuple[int, bytes]]:
+        """喂入数据，返回 (msg_num, payload) 列表。"""
+        self.buf.extend(data)
+        found: List[Tuple[int, bytes]] = []
         while True:
             # 寻找前导 0xD3
             start = self._find_preamble()
@@ -47,11 +55,10 @@ class RTCMParser:
             total = 3 + length + 3  # 头(3) + payload(length) + CRC(3)
             if len(self.buf) < total:
                 break
-            payload = self.buf[3:3+length]
+            payload = bytes(self.buf[3:3 + length])
             msg_num = self._get_msg_num(payload)
             if msg_num is not None:
-                self.stats[msg_num] = self.stats.get(msg_num, 0) + 1
-                found.append(msg_num)
+                found.append((msg_num, payload))
             # 丢弃一帧
             del self.buf[:total]
         return found
